@@ -1,0 +1,185 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott/Github/figures/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Pi is irrational}
+\date{}
+
+\begin{document}
+\maketitle
+\Large
+
+%[my-super-duper-separator]
+
+We will show that there do not exist two integers $a$ and $b$ such that $a/b = \pi$.  The proof that $\pi$ is irrrational is from 
+
+\url{https://mindyourdecisions.com/blog/2013/11/08/proving-pi-is-irrational-a-step-by-step-guide-to-a-simple-proof/}
+
+\url{https://projecteuclid.org/download/pdf_1/euclid.bams/1183510788}
+
+\emph{Proof}.
+
+The proof is by contradiction.  After the assumption (that $\pi$ is rational), there are three major parts:
+
+$\bullet$ \ Create a function $f(x)$ that depends on $a$ and $b$, as well as a constant integer $n$.
+
+$\bullet$ \ Prove that if $\pi$ is rational, the integral of $f(x) \sin x$ over a certain interval is an integer, for all values of $n$.
+
+$\bullet$ \ Prove that the same integral tends to $0$ as $n \rightarrow \infty$.
+
+The contradiction is a proof that there do not exist such integers $a$ and $b$.
+
+\subsection*{part 1}
+In this part we derive some properties of the derivative of a special function $f(x)$.
+
+Assume $\pi = a/b$, for integer $a$ and $b$.  Define (for integer $n$):
+
+\[ f(x) = \frac{x^n (a-bx)^n}{n!} \]
+
+We can verify some properties of the function.
+
+\[ f(x) = \frac{x^n (a-bx)^n}{n!} \]
+
+$\circ$ \ 1a.  $f(0) = 0$.  Since $x^n = 0$ for $x = 0$, the result follows.
+
+$\circ$ \ 1b.  $f(x) = f(\pi - x)$.  
+
+Verify this as follows:
+\[ f(\pi - x) = \frac{(a/b - x)^n \ [ \ a-b(a/b - x) \ ]^n}{n!} \]
+\[ = \frac{(a/b - x)^n \ (bx)^n}{n!} \]
+\[ = \frac{(a - bx)^n \ x^n}{n!} = f(x) \]
+
+$\circ$ \ 1c.  The $k$th derivative $f^{(k)}(0)$ is an integer.
+
+Use the binomial theorem to expand
+\[ (a - bx)^n = a^n + a^{n-1}(-bx) + a^{n-2}(-bx)^2 \dots + (-bx)^n \]
+
+Multiplied by $x^n$ we obtain a series of terms
+\[ x^n \dots x^{2n} \]
+
+So
+\[ f(x) = \frac{1}{n!} \ [ \ c_0 x^n + c_1 x^{n+1} + \dots + c_n x^{2n} \ ] \]
+
+Since $a$ and $b$ are integers, the coefficients $c_k$ which are products of powers of $a$ and $b$ are also integers.  The sign of the terms alternates from plus to minus.
+
+Suppose we take the derivative $k$ times.
+
+If $k < n$, then all the derivatives contain $x^{n-k}$ or a greater power, and will be zero when $x = 0$.  Differentiating more than $2n$ times, all the terms vanish.
+
+When $k$ is intermediate between $n$ and $2n$ there will be exactly one constant term (not a power of $x$) which is therefore non-zero at $x = 0$.
+
+Besides the factor of $c_k$, another cofactor of the non-zero term of the $f^{(k)}$ derivative is $k!$  Recall that we have $n!$ in the denominator and $n \le k \le 2n$.  Since $k \ge n$, $k!/n!$ is an integer.
+
+$\circ$ \ 1d.  $f^{(k)}(x) = (-1)^{k} f^{(k)} (\pi - x)$.
+
+By the chain rule, the first derivative 
+
+\[ \frac{d}{dx} f(\pi - x) = (-1) f'(\pi - x) = - f'(x)  \]
+
+Subsequent derivatives alternate in sign:  $f^{(2)}(x) = f^{(2)}(\pi - x)$ and $f^{(k)}(x) = (-1)^k  f^{(k)}(\pi - x)$
+
+$\circ$ \ 1e.  From (1d)
+\[ f^{(k)}(\pi) = \pm f^{(k)} (\pi - x) = \pm f^{(k)} (0) \]
+so it follows from (1c) that $f^{(k)}(\pi)$ is an integer.
+
+\subsection*{part 2}
+We have
+\[ f(x) = \frac{x^n (a-bx)^n}{n!} \]
+
+and construct an even weirder function:
+\[ g(x) = (-1)^0 f(x) + (-1)^1 f^{(2)}(x) + (-1)^2 f^{(4)}(x) \dots + (-1)^n f^{(2n)}(x) \]
+
+The terms simply alternate in sign.
+\[ g(x) = f(x) -f^{(2)}(x) + f^{(4)}(x) \dots + (-1)^n f^{(2n)}(x) \]
+
+$\circ$ \ 2a.  $g(x)$ evaluated at either $0$ or $\pi$ is an integer.
+
+Since $f^{(k)} (0)$ and $f^{(k)} (\pi)$ are integers for all $k$, so is $g(x)$.
+
+Here's where it gets a little tricky.  
+
+$\circ$ \ 2b.  The second derivative $g^{(2)}(x)$ is
+\[ g^{(2)} (x) = f^{(2)}(x) - f^{(4)}(x) \dots + (-1)^n f^{(2n + 2)}(x) \]
+
+where the last term is equal to zero, by 1c.
+
+So
+\[ g^{(2)} (x) + g(x) = f(x) \]
+
+$\circ$ \ 2c.  We form the composite function $f(x) \sin x$ and obtain the anti-derivative by guessing the answer in the first step:
+
+\[ \frac{d}{dx} \ [ \ g'(x) \sin x - g(x) \cos x \ ] \]
+\[ = g^{(2)}(x) \sin x + g'(x) \cos x - g'(x) \cos x + g(x) \sin x\]
+\[ = g^{(2)}(x) \sin x + g(x) \sin x\]
+\[ = f(x) \sin x \]
+
+Yep, that's it.
+
+Thus, by the Fundamental Theorem of Calculus:
+
+\[ \int_0^{\pi} f(x) \sin x \ dx = g'(x) \sin x - g(x) \cos x \bigg |_0^{\pi} \]
+\[ = g'(\pi) \sin \pi - g(\pi) \cos \pi - g'(0) \sin 0 + g(0) \cos 0 \]
+\[ = g(\pi) + g(0) \]
+
+We have shown previously (2a) that $g(\pi) + g(0)$ is an integer.
+
+In summary, we have established that
+$\int_0^{\pi} f(x) \sin x \ dx$ is an integer for all integer $n$.
+
+Of course, this is all based on the premise that $\pi$ rational.
+
+\subsection*{part 3}
+
+We now expose the contradiction.  
+
+Consider the open range $0 < x < \pi$.  We  have
+\[ f(x) = \frac{x^n (a-bx)^n}{n!} \]
+
+What about $f(x) \sin x$?  
+
+Well, $\sin x > 0$ over this range, only becoming zero at the limits.  
+
+Since $x < \pi = a/b$, the term $a - bx$ is also positive over this range.  It only becomes equal to $0$ when $x = \pi = a/b$.  So $f(x) \sin x > 0$ always over this range.
+
+How about the upper bound?  $0 < \sin x < 1$ except at the bounds so
+\[ 0 < f(x) \sin x < f(x) \]
+
+This is what the source says.  It isn't exactly correct because at $x = \pi/2$, the $\sin$ term is equal to one and we have equality.
+
+Go back to the definition
+\[ f(x) = \frac{x^n (a - bx)^n}{n!} \]
+
+The largest value of $x^n$ is $\pi^n$.  The largest value of $a - bx$ is $a$.  So
+\[ 0 < f(x) \sin x < \frac{a^n \pi^n}{n!}  \]
+
+Integrate each term.  The integrand on the right is constant, hence we get just an additional factor of
+\[ x \bigg |_0^{\pi} = \pi \]
+so
+
+\[ 0 < \int_0^{\pi} f(x) \sin x \ dx <  \pi \frac{a^n \pi^{n}}{n!}   \]
+
+Finally, evaluate what happens in the limit as $n \rightarrow \infty$.
+
+We know that the exponential series $e^x$ converges.  A requirement for convergence is that the terms $x^n/n!$ tend to zero.  Therefore the above ratio (with $x = a\pi$) does too.
+
+More carefully, form the ratio of consecutive terms:
+\[ \frac{c_{n+1}}{c_n} = \frac{n!}{a^n \pi^{n}} \cdot \frac{a^{n+1} \pi^{n+1}}{(n+1)!} \]
+\[ = \frac{a \pi}{n+1} \]
+
+Therefore, for large $n$, the upper bound tends to zero.
+
+We have reached a contradiction.  Therefore, the assumption is not correct, and there do not exist two integers $a$ and $b$ such that $a/b = \pi$.
+
+$\square$
+
+\end{document}
