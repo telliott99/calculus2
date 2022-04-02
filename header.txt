@@ -8,8 +8,8 @@
 \usepackage{parskip}
 \usepackage{color}
 %\usepackage{hyperref}
-\usepackage{tocloft}
-\setlength{\cftchapnumwidth}{2.5em}
+%\usepackage{tocloft}
+%\setlength{\cftchapnumwidth}{2.5em}
 
 \PassOptionsToPackage{hyphens}{url}
 \usepackage[hidelinks, 
@@ -21,7 +21,7 @@ urlcolor=red]{hyperref}
 
 %\setcounter{tocdepth}{0}
 
-\graphicspath{{/Users/telliott/Github/figures/}}
+\graphicspath{{/Users/telliott/Dropbox/Github-math/figures/}}
 
 \title{Multivariable Calculus}
 \author{Tom Elliott}
